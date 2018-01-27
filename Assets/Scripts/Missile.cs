@@ -20,5 +20,11 @@ public class Missile : MonoBehaviour {
     {
         Debug.Log("Collision detected");
         Destroy(gameObject);
+
+	    var player = col.gameObject.GetComponent<PlayerControler>();
+	    if (player != null)
+	    {
+		    player.HealthBar.TakeDamage('0');
+	    }
     }
 }

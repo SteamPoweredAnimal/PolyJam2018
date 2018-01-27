@@ -1268,7 +1268,8 @@ MonoBehaviour:
   InputController: {fileID: 455494064}
   Speed: 5
   gun: {fileID: 1877262438}
-  healthBar: {fileID: 18453071}
+  HealthBar: {fileID: 18453071}
+  Score: 0
 --- !u!61 &740588817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1406,7 +1407,8 @@ MonoBehaviour:
   InputController: {fileID: 2099755702}
   Speed: 5
   gun: {fileID: 171710609}
-  healthBar: {fileID: 1162508548}
+  HealthBar: {fileID: 1162508548}
+  Score: 0
 --- !u!212 &748539728
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1530,7 +1532,8 @@ MonoBehaviour:
   InputController: {fileID: 258235798}
   Speed: 5
   gun: {fileID: 355939421}
-  healthBar: {fileID: 1418302880}
+  HealthBar: {fileID: 1418302880}
+  Score: 0
 --- !u!212 &798029721
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2138,7 +2141,8 @@ MonoBehaviour:
   InputController: {fileID: 1337529034}
   Speed: 5
   gun: {fileID: 473587814}
-  healthBar: {fileID: 1156467547}
+  HealthBar: {fileID: 1156467547}
+  Score: 0
 --- !u!212 &1812550087
 SpriteRenderer:
   m_ObjectHideFlags: 0

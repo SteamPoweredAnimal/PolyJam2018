@@ -5,9 +5,10 @@ public class PlayerControler : MonoBehaviour
 	public InputController InputController;
 	public float Speed;
     public Gun gun;
-	public HealthBar healthBar;
-
-	private Rigidbody2D rigidbody2D;
+	public HealthBar HealthBar;
+	public int Score;
+	
+	private new Rigidbody2D rigidbody2D;
 
 	private void Start()
 	{
