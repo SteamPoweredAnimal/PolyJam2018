@@ -11,6 +11,11 @@ public class PlayerControler : MonoBehaviour
     public AudioClip HealthDownSound;
     public AudioClip HealthUpSound;
     public AudioClip DeathSound;
+    bool doingDash = false;
+    float dashTimer = 0f;
+    float dashCooldown = 2.2f;
+    public Vector3 previousLook;
+    public bool allowFire;
 
 
     private new Rigidbody2D rigidbody2D;
@@ -18,25 +23,59 @@ public class PlayerControler : MonoBehaviour
 	private void Start()
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
-	}
+        previousLook = new Vector3(0, 0, 0);
+        allowFire = true;
+        dashTimer = dashCooldown;
+
+    }
 
 	private void Update()
 	{
-		var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
-		rigidbody2D.velocity = translation;
-       
-		var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
-		transform.rotation = Quaternion.Euler(look);
-		
-		if (InputController.Get0ShootButtonDown())
-		{
-			if (gun.normalGun) gun.Fire(gun.missileA[0], GetGunDirection());
+        if (!doingDash)
+        {
+            var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
+            rigidbody2D.velocity = translation;
+
+        }
+        if (InputController.GetDashButtonDown() && dashTimer >= dashCooldown)
+        {
+            doingDash = true;
+            rigidbody2D.velocity = rigidbody2D.velocity * 10f;
+            dashTimer = 0f;
+        }
+        dashTimer += Time.deltaTime;
+        if(doingDash && dashTimer >= 0.1f)
+        {
+            rigidbody2D.velocity = Vector3.zero;
+            //if (dashTimer >= 0.5f)
+            //{
+                doingDash = false;
+            //}
+        }
+
+
+        var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
+        Debug.Log(look.magnitude);
+        if (new Vector2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()).magnitude > 0.8)
+        {
+            previousLook = look;
+        }
+        transform.rotation = Quaternion.Euler(previousLook);
+
+        if (allowFire && InputController.GetShootButton() > 0.2)
+        {
+            allowFire = false;
+            if (gun.normalGun) gun.Fire(gun.missileA[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileA[0], GetGunDirection());
-		} else if (InputController.Get1ShootButtonDown()) //avoid shooting two different missiles at once
-		{
+        }
+        else if (allowFire && InputController.GetShootButton() < -0.2)
+        {
+            allowFire = false;
             if (gun.normalGun) gun.Fire(gun.missileB[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileB[0], GetGunDirection());
         }
+        else if (Mathf.Abs(InputController.GetShootButton()) < 0.2)
+            allowFire = true;
     }
 
     private Vector2 GetGunDirection()
@@ -48,27 +87,6 @@ public class PlayerControler : MonoBehaviour
     public void PlayBuffSound()
     {
         GetComponent<AudioSource>().clip = PowerUpSound;
-        GetComponent<AudioSource>().Play();
-
-    }
-
-    public void PlayBitUp()
-    {
-        GetComponent<AudioSource>().clip = HealthDownSound;
-        GetComponent<AudioSource>().Play();
-
-    }
-
-    public void PlayBitDown()
-    {
-        GetComponent<AudioSource>().clip = HealthUpSound;
-        GetComponent<AudioSource>().Play();
-
-    }
-
-    public void PlayDeathSound()
-    {
-        GetComponent<AudioSource>().clip = DeathSound;
         GetComponent<AudioSource>().Play();
 
     }

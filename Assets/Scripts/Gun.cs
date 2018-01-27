@@ -22,7 +22,8 @@ public class Gun : MonoBehaviour
     public enum GunType
     {
         Normal = 0,
-        Machine = 1
+        Machine = 1,
+        Grenade = 3
     }
 
     private void Start()
