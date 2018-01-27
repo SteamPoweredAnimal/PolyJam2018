@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Missile : MonoBehaviour
 {
@@ -44,12 +46,14 @@ public class Missile : MonoBehaviour
         var collider = col.collider;
 
         Missile colliderMissile = collider.GetComponent<Missile>();
+        var collidedPlayer = collider.GetComponent<PlayerControler>();
 
         if (colliderMissile != null)
         {
             if (velocity == -colliderMissile.velocity) return;
             ManageCollision(this, colliderMissile);
         }
+        else if(collidedPlayer != null) collidedPlayer.HealthBar.TakeDamage(type.ToChar());
         else Destroy(gameObject);
     }
 
