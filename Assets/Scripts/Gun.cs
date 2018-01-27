@@ -14,4 +14,5 @@ public class Gun : MonoBehaviour {
         _missile.transform.position = transform.position;
         _missile.velocity = direction * missileSpeed;
     }
+
 }
