@@ -1,9 +1,18 @@
 ﻿using UnityEngine;
 
-public abstract class InputController : MonoBehaviour
+public class InputController : MonoBehaviour
 {
-    public abstract float GetXAxis();
-    public abstract float GetYAxis();
-    public abstract float Get0ShootButton();
-    public abstract float Get1ShootButton();
+    public string MoveXAxisName;
+    public string MoveYAxisName;
+    public string LookXAxisName;
+    public string LookYAxisName;
+    public string Button0Name;
+    public string Button1Name;
+    
+    public float GetXMoveAxis() => Input.GetAxis(MoveXAxisName);
+    public float GetYMoveAxis() => Input.GetAxis(MoveYAxisName);
+    public float GetXLookAxis() => Input.GetAxis(LookXAxisName);
+    public float GetYLookAxis() => Input.GetAxis(LookYAxisName);
+    public bool Get0ShootButton() => Input.GetButton(Button0Name);
+    public bool Get1ShootButton() => Input.GetButton(Button1Name);
 }
