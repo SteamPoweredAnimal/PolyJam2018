@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,6 +11,8 @@ public class HealthBar : MonoBehaviour
     
     private GameObject[] currentHPBar;
     private bool[] isActive;
+    
+    private Vector3 WPizduDaleko = new Vector3(-10000, -10000, -10000);
 
     public void Start()
     {
@@ -32,10 +33,14 @@ public class HealthBar : MonoBehaviour
         {
             currentHPBar[i].SetActive(false);
             isActive[i] = false;
+            if (i >= isActive.Length - 1)
+            {
+                Die();
+            }
         }
         else
         {
-            for (int j = 0; j < i; j++)
+            for (var j = 0; j < i; j++)
             {
                 currentHPBar[j].SetActive(true);
                 isActive[j] = true;
@@ -70,5 +75,12 @@ public class HealthBar : MonoBehaviour
     {
         var parentPos = Camera.main.WorldToScreenPoint(Parent.position);
         transform.position = parentPos;
+    }
+
+    private void Die()
+    {
+        Parent.position = WPizduDaleko;
+        Parent.gameObject.SetActive(false);
+        SetUpHpBar();
     }
 }
