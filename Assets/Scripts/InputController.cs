@@ -8,11 +8,11 @@ public class InputController : MonoBehaviour
     public string LookYAxisName;
     public string Button0Name;
     public string Button1Name;
-    
-    public float GetXMoveAxis() => Input.GetAxis(MoveXAxisName);
-    public float GetYMoveAxis() => Input.GetAxis(MoveYAxisName);
-    public float GetXLookAxis() => Input.GetAxis(LookXAxisName);
-    public float GetYLookAxis() => Input.GetAxis(LookYAxisName);
-    public bool Get0ShootButton() => Input.GetButton(Button0Name);
-    public bool Get1ShootButton() => Input.GetButton(Button1Name);
+
+    public float GetXMoveAxis() { return Input.GetAxis(MoveXAxisName); }
+    public float GetYMoveAxis() { return Input.GetAxis(MoveYAxisName); }
+    public float GetXLookAxis() { return Input.GetAxis(LookXAxisName); }
+    public float GetYLookAxis() { return Input.GetAxis(LookYAxisName); }
+    public bool Get0ShootButton() { return Input.GetButton(Button0Name); }
+    public bool Get1ShootButton() { return Input.GetButton(Button1Name); }
 }
