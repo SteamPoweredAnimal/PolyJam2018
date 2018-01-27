@@ -12,21 +12,21 @@ public class PlayerControler : MonoBehaviour
 	{
 		rigidbody2D = GetComponent<Rigidbody2D>();
 	}
-	
+
 	private void Update()
 	{
 		var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
 		rigidbody2D.velocity = translation;
-		
-		var look = new Vector2(InputController.GetXLookAxis(), InputController.GetYLookAxis());
-		transform.rotation = Quaternion.Euler(look);
 
-        if (InputController.Get0ShootButton())
-        {
-            gun.Fire(gun.missileA, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
-        } else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
-        {
-            gun.Fire(gun.missileB, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
-        }
+		var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
+		transform.rotation = Quaternion.Euler(look);
+		
+		if (InputController.Get0ShootButton())
+		{
+			gun.Fire(gun.missileA, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
+		} else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
+		{
+			gun.Fire(gun.missileB, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
+		}
 	}
 }
