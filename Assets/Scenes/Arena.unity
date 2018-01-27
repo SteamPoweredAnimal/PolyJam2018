@@ -140,8 +140,6 @@ Transform:
   m_Children:
   - {fileID: 455494063}
   - {fileID: 224755062}
-  - {fileID: 1840320651}
-  - {fileID: 1316501416}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -443,12 +441,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b6d24c3732c4b329138a6820caecb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveXAxisName: Horizontal
-  MoveYAxisName: Vertical
-  LookXAxisName: HorizontalLook
-  LookYAxisName: VerticalLook
-  Button0Name: Fire1
-  Button1Name: Fire2
+  MoveXAxisName: P2Horizontal
+  MoveYAxisName: P2Vertical
+  LookXAxisName: P2HorizontalLook
+  LookYAxisName: P2VerticalLook
+  Button0Name: P2Fire1
+  Button1Name: P2Fire2
 --- !u!1001 &305544598
 Prefab:
   m_ObjectHideFlags: 0
@@ -1224,12 +1222,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8b6d24c3732c4b329138a6820caecb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveXAxisName: Horizontal
-  MoveYAxisName: Vertical
-  LookXAxisName: HorizontalLook
-  LookYAxisName: VerticalLook
-  Button0Name: Fire1
-  Button1Name: Fire2
+  MoveXAxisName: P1Horizontal
+  MoveYAxisName: P1Vertical
+  LookXAxisName: P1HorizontalLook
+  LookYAxisName: P1VerticalLook
+  Button0Name: P1Fire1
+  Button1Name: P1Fire2
 --- !u!1 &464019226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,6 +1869,10 @@ MonoBehaviour:
   gun: {fileID: 1877262438}
   HealthBar: {fileID: 117052670}
   Score: 0
+  PowerUpSound: {fileID: 0}
+  HealthDownSound: {fileID: 0}
+  HealthUpSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!61 &740588817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1998,52 +2000,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1316501415
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1316501416}
-  - component: {fileID: 1316501417}
-  m_Layer: 0
-  m_Name: Player4
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1316501416
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1316501415}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6035052}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1316501417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1316501415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b6d24c3732c4b329138a6820caecb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveXAxisName: Horizontal
-  MoveYAxisName: Vertical
-  LookXAxisName: HorizontalLook
-  LookYAxisName: VerticalLook
-  Button0Name: Fire1
-  Button1Name: Fire2
 --- !u!1001 &1333002005
 Prefab:
   m_ObjectHideFlags: 0
@@ -2544,52 +2500,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9373ab92166d6b49b5cbc8bb0843f55, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1840320650
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1840320651}
-  - component: {fileID: 1840320652}
-  m_Layer: 0
-  m_Name: Player3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1840320651
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840320650}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6035052}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1840320652
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1840320650}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b6d24c3732c4b329138a6820caecb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveXAxisName: Horizontal
-  MoveYAxisName: Vertical
-  LookXAxisName: HorizontalLook
-  LookYAxisName: VerticalLook
-  Button0Name: Fire1
-  Button1Name: Fire2
 --- !u!1 &1877262436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2879,6 +2789,10 @@ MonoBehaviour:
   gun: {fileID: 1551191875}
   HealthBar: {fileID: 729298439}
   Score: 0
+  PowerUpSound: {fileID: 0}
+  HealthDownSound: {fileID: 0}
+  HealthUpSound: {fileID: 0}
+  DeathSound: {fileID: 0}
 --- !u!212 &2052919156
 SpriteRenderer:
   m_ObjectHideFlags: 0
