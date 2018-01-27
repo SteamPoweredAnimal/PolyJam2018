@@ -10,6 +10,8 @@ public class PowerUp : MonoBehaviour
         PlayerControler player = collider.gameObject.GetComponent<PlayerControler>();
         if (player != null)
         {
+
+            player.PlayBuffSound();
             Activate(player);
             Destroy(gameObject);
         }

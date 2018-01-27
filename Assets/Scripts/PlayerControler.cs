@@ -7,6 +7,10 @@ public class PlayerControler : MonoBehaviour
     public Gun gun;
 	public HealthBar HealthBar;
 	public int Score;
+    public AudioClip PowerUpSound;
+    public AudioClip HealthDownSound;
+    public AudioClip HealthUpSound;
+    public AudioClip DeathSound;
 
 
     private new Rigidbody2D rigidbody2D;
@@ -46,5 +50,12 @@ public class PlayerControler : MonoBehaviour
     {
         Vector2 gun_direction = gun.transform.position - transform.position;
         return gun_direction / gun_direction.magnitude;
+    }
+
+    public void PlayBuffSound()
+    {
+        GetComponent<AudioSource>().clip = PowerUpSound;
+        GetComponent<AudioSource>().Play();
+
     }
 }

@@ -12,6 +12,8 @@ public class PowerUpShield : PowerUp
         base.Activate(player);
         if (shieldPrefab != null)
         {
+            
+
             GameObject shieldGO = Instantiate(shieldPrefab, player.transform);
             shieldGO.transform.localPosition = new Vector3(0, 0, 0.01f);
         }

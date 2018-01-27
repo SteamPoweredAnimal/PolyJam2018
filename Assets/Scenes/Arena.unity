@@ -359,7 +359,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 740588815}
-  scoreboard: {fileID: 1608581250}
+  Scoreboard: {fileID: 1608581250}
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1001 &140040342
 Prefab:
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 2052919152}
-  scoreboard: {fileID: 1608581250}
+  Scoreboard: {fileID: 1608581250}
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &729298440
 MonoBehaviour:
