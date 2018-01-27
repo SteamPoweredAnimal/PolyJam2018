@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputController: {fileID: 455494064}
-  Speed: 5
+  Speed: 4
   gun: {fileID: 1877262438}
   HealthBar: {fileID: 117052670}
   Score: 0
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileA: {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
   missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
-  missileSpeed: 3
+  missileSpeed: 15
   normalGun: 1
   machineGun: 0
 --- !u!1 &1608581245
@@ -2577,7 +2577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileA: {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
   missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
-  missileSpeed: 3
+  missileSpeed: 15
   normalGun: 1
   machineGun: 0
 --- !u!1 &1886471700
@@ -2816,7 +2816,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputController: {fileID: 224755063}
-  Speed: 5
+  Speed: 4
   gun: {fileID: 1551191875}
   HealthBar: {fileID: 729298439}
   Score: 0
