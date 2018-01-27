@@ -188,6 +188,11 @@ Prefab:
       propertyPath: m_TagString
       value: MirrorVertical
       objectReference: {fileID: 0}
+    - target: {fileID: 61121916623888734, guid: b7ff61d72afc6459ebd466605d5284ea,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7ff61d72afc6459ebd466605d5284ea, type: 2}
   m_IsPrefabParent: 0
