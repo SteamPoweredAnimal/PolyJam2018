@@ -10,7 +10,7 @@ public class HealthBar : MonoBehaviour
     public GameObject Zero, One;
     public List<char> CurrentHP = new List<char>();
     public Transform Parent;
-    public Scoreboard Scoreboard;
+    public Scoreboard scoreboard;
     public Vector3 SpawnPoint;
     
     private List<GameObject> currentHPBar;
@@ -49,18 +49,23 @@ public class HealthBar : MonoBehaviour
             }
         }
 
-        if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8) Die();
+        if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8)
+        {
+            if (missile == Parent.name) scoreboard.RemovePoint(missile);
+            else scoreboard.AddPoint(missile);
+            Die();
+        }
     }
 
     private void Score(string missile)
     {
         if (Parent.name == missile)
         {
-            Scoreboard.RemovePoint(missile);
+            scoreboard.RemovePoint(missile);
         }
         else
         {
-            Scoreboard.AddPoint(missile);
+            scoreboard.AddPoint(missile);
         }
     }
     
