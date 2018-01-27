@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -8,6 +9,8 @@ public class HealthBar : MonoBehaviour
     public GameObject Zero, One;
     public string CurrentHP;
     public Transform Parent;
+    public Scoreboard Scoreboard;
+    public Vector3 SpawnPoint;
     
     private GameObject[] currentHPBar;
     private bool[] isActive;
@@ -21,7 +24,7 @@ public class HealthBar : MonoBehaviour
         SetUpHpBar();
     }
 
-    public void TakeDamage(char fromWhat)
+    public void TakeDamage(char fromWhat, string missile)
     {
         var i = 0;
         while (!isActive[i] && i < isActive.Length)
@@ -36,6 +39,7 @@ public class HealthBar : MonoBehaviour
             if (i >= isActive.Length - 1)
             {
                 Die();
+                Score(missile);
             }
         }
         else
@@ -45,6 +49,18 @@ public class HealthBar : MonoBehaviour
                 currentHPBar[j].SetActive(true);
                 isActive[j] = true;
             }
+        }
+    }
+
+    private void Score(string missile)
+    {
+        if (Parent.name == missile)
+        {
+            Scoreboard.RemovePoint(missile);
+        }
+        else
+        {
+            Scoreboard.AddPoint(missile);
         }
     }
     
@@ -81,6 +97,15 @@ public class HealthBar : MonoBehaviour
     {
         Parent.position = WPizduDaleko;
         Parent.gameObject.SetActive(false);
+        SetUpHpBar();
+        StartCoroutine(RespawnAfter5());
+    }
+
+    private IEnumerator RespawnAfter5()
+    {
+        yield return new WaitForSeconds(3);
+        Parent.position = SpawnPoint;
+        Parent.gameObject.SetActive(true);
         SetUpHpBar();
     }
 }

@@ -13,7 +13,7 @@ public class Missile : MonoBehaviour
     float timer = 0f;
     [HideInInspector]
     public BoxCollider2D collider;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public Sprite falseSprite;
     public Sprite trueSprite;
 
@@ -23,6 +23,8 @@ public class Missile : MonoBehaviour
         True = 1,
         Qbit = 2
     }
+
+    public string OwnerName { get; set; }
 
     // Use this for initialization
     void Start()
@@ -53,7 +55,11 @@ public class Missile : MonoBehaviour
             if (velocity == -colliderMissile.velocity) return;
             ManageCollision(this, colliderMissile);
         }
-        else if(collidedPlayer != null) collidedPlayer.HealthBar.TakeDamage(type.ToChar());
+        else if (collidedPlayer != null)
+        {
+            Destroy(gameObject);
+            collidedPlayer.HealthBar.TakeDamage(type.ToChar(), OwnerName);
+        }
         else Destroy(gameObject);
     }
 
@@ -81,13 +87,11 @@ public class Missile : MonoBehaviour
 
         missile1.type = newType;
         missile1.velocity = newVelocity;
-        //missile1.collider.enabled = false;
         missile1.timer = 0f;
         missile1.spriteRenderer.sprite = newSprite;
 
         missile2.type = newType;
         missile2.velocity = -newVelocity;
-        //missile2.collider.enabled = false;
         missile2.timer = 0f;
         missile2.spriteRenderer.sprite = newSprite;
 
