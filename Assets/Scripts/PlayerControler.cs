@@ -7,9 +7,9 @@ public class PlayerControler : MonoBehaviour
     public Gun gun;
 	public HealthBar HealthBar;
 	public int Score;
-    public bool useGun = true;
-	
-	private new Rigidbody2D rigidbody2D;
+
+
+    private new Rigidbody2D rigidbody2D;
 
 	private void Start()
 	{
@@ -24,16 +24,23 @@ public class PlayerControler : MonoBehaviour
 		var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
 		transform.rotation = Quaternion.Euler(look);
 		
-		if (InputController.Get0ShootButton())
+		if (InputController.Get0ShootButtonDown())
 		{
-			if (useGun) gun.Fire(gun.missileA, GetGunDirection());
-		} else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
+			if (gun.normalGun) gun.Fire(gun.missileA, GetGunDirection());
+		} else if (InputController.Get1ShootButtonDown()) //avoid shooting two different missiles at once
 		{
-            if (useGun) gun.Fire(gun.missileB, GetGunDirection());
+            if (gun.normalGun) gun.Fire(gun.missileB, GetGunDirection());
 		}
 
-
-	}
+        if (InputController.Get0ShootButton())
+        {
+            if (gun.machineGun) gun.Fire(gun.missileA, GetGunDirection());
+        }
+        else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
+        {
+            if (gun.machineGun) gun.Fire(gun.missileB, GetGunDirection());
+        }
+    }
 
     private Vector2 GetGunDirection()
     {
