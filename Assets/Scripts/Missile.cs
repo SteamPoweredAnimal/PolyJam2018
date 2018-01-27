@@ -57,6 +57,17 @@ public class Missile : MonoBehaviour
         Missile colliderMissile = collider.GetComponent<Missile>();
         var collidedPlayer = collider.GetComponent<PlayerControler>();
 
+        if (collider.CompareTag("MirrorVertical"))
+        {
+            velocity = new Vector2(-velocity.x, velocity.y);
+            return;
+        }
+        if (collider.CompareTag("MirrorHorizontal"))
+        {
+            velocity = new Vector2(velocity.x, -velocity.y);
+            return;
+        }
+        
         if (colliderMissile != null)
         {
             if (velocity == -colliderMissile.velocity) return;
