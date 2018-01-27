@@ -5,8 +5,8 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
 
-    public Missile missileA;
-    public Missile missileB;
+    public Missile[] missileA;
+    public Missile[] missileB;
     public float missileSpeed;
     private GameObject Owner;
     float timer = 0f;
