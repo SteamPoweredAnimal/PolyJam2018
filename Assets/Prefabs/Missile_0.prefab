@@ -100,6 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 10, y: 0}
+  type: 0
+  collider: {fileID: 0}
+  falseSprite: {fileID: 21300000, guid: 7c5aa3773113e6646a2ff906e550ffcd, type: 3}
+  trueSprite: {fileID: 21300000, guid: 3d3a8be1c1fa5684882c58bc1fda5f82, type: 3}
 --- !u!212 &212948702131582564
 SpriteRenderer:
   m_ObjectHideFlags: 1

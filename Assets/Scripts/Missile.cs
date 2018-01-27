@@ -7,11 +7,13 @@ public class Missile : MonoBehaviour
 
     public Vector2 velocity;
     public MissileType type;
-    float activationTime = .1f;
+    float activationTime = .25f;
     float timer = 0f;
     [HideInInspector]
     public BoxCollider2D collider;
     SpriteRenderer spriteRenderer;
+    public Sprite falseSprite;
+    public Sprite trueSprite;
 
     public enum MissileType
     {
@@ -25,7 +27,7 @@ public class Missile : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
-        collider.enabled = false;
+        //collider.enabled = false;
     }
 
     // Update is called once per frame
@@ -43,7 +45,11 @@ public class Missile : MonoBehaviour
 
         Missile colliderMissile = collider.GetComponent<Missile>();
 
-        if (colliderMissile != null) ManageCollision(this, colliderMissile);
+        if (colliderMissile != null)
+        {
+            if (velocity == -colliderMissile.velocity) return;
+            ManageCollision(this, colliderMissile);
+        }
         else Destroy(gameObject);
     }
 
@@ -52,18 +58,34 @@ public class Missile : MonoBehaviour
         bool sameType = missile1.type == missile2.type;
 
         float speed = (missile1.velocity.magnitude + missile2.velocity.magnitude) / 2f;
-        Vector2 newVelocity = Random.onUnitSphere * speed;
+        Vector2 newVelocity = Random.insideUnitCircle.normalized * speed;
         MissileType newType = sameType ? MissileType.True : MissileType.False;
+
+        Sprite newSprite;
+        switch (newType)
+        {
+            case MissileType.False:
+                newSprite = falseSprite;
+                break;
+            case MissileType.True:
+                newSprite = trueSprite;
+                break;
+            default:
+                newSprite = spriteRenderer.sprite;
+                break;
+        }
 
         missile1.type = newType;
         missile1.velocity = newVelocity;
-        missile1.collider.enabled = false;
+        //missile1.collider.enabled = false;
         missile1.timer = 0f;
+        missile1.spriteRenderer.sprite = newSprite;
 
         missile2.type = newType;
         missile2.velocity = -newVelocity;
-        missile2.collider.enabled = false;
+        //missile2.collider.enabled = false;
         missile2.timer = 0f;
+        missile2.spriteRenderer.sprite = newSprite;
 
     }
 }
