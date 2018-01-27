@@ -13,7 +13,7 @@ public class PlayerControler : MonoBehaviour
     public AudioClip DeathSound;
     bool doingDash = false;
     float dashTimer = 0f;
-    float dashCooldown = 10f;
+    float dashCooldown = 2.2f;
     public Vector3 previousLook;
     public bool allowFire;
 
@@ -25,6 +25,7 @@ public class PlayerControler : MonoBehaviour
 		rigidbody2D = GetComponent<Rigidbody2D>();
         previousLook = new Vector3(0, 0, 0);
         allowFire = true;
+        dashTimer = dashCooldown;
 
     }
 
@@ -35,17 +36,25 @@ public class PlayerControler : MonoBehaviour
             var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
             rigidbody2D.velocity = translation;
 
-    }
-        if (Input.GetKeyDown(KeyCode.Space))//InputController.GetDashButtonDown())
+        }
+        if (InputController.GetDashButtonDown() && dashTimer >= dashCooldown)
         {
             doingDash = true;
-        }
-            rigidbody2D.velocity = rigidbody2D.velocity* 5f;
+            rigidbody2D.velocity = rigidbody2D.velocity * 10f;
             dashTimer = 0f;
-		var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
-		rigidbody2D.velocity = translation;
-       
-		var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
+        }
+        dashTimer += Time.deltaTime;
+        if(doingDash && dashTimer >= 0.1f)
+        {
+            rigidbody2D.velocity = Vector3.zero;
+            //if (dashTimer >= 0.5f)
+            //{
+                doingDash = false;
+            //}
+        }
+
+
+        var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
         Debug.Log(look.magnitude);
         if (new Vector2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()).magnitude > 0.8)
         {

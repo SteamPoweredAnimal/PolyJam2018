@@ -447,6 +447,7 @@ MonoBehaviour:
   LookYAxisName: P2VerticalLook
   Button0Name: P2Fire1
   Button1Name: P2Fire2
+  DashButton: P2Dash
 --- !u!1001 &305544598
 Prefab:
   m_ObjectHideFlags: 0
@@ -1228,6 +1229,7 @@ MonoBehaviour:
   LookYAxisName: P1VerticalLook
   Button0Name: P1Fire1
   Button1Name: P1Fire2
+  DashButton: P1Dash
 --- !u!1 &464019226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,6 +1875,8 @@ MonoBehaviour:
   HealthDownSound: {fileID: 0}
   HealthUpSound: {fileID: 0}
   DeathSound: {fileID: 0}
+  previousLook: {x: 0, y: 0, z: 0}
+  allowFire: 0
 --- !u!61 &740588817
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2793,6 +2797,8 @@ MonoBehaviour:
   HealthDownSound: {fileID: 0}
   HealthUpSound: {fileID: 0}
   DeathSound: {fileID: 0}
+  previousLook: {x: 0, y: 0, z: 0}
+  allowFire: 0
 --- !u!212 &2052919156
 SpriteRenderer:
   m_ObjectHideFlags: 0
