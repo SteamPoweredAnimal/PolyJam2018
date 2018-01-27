@@ -11,6 +11,9 @@ public class PlayerControler : MonoBehaviour
     public AudioClip HealthDownSound;
     public AudioClip HealthUpSound;
     public AudioClip DeathSound;
+    bool doingDash = false;
+    float dashTimer = 0f;
+    float dashCooldown = 10f;
     public Vector3 previousLook;
     public bool allowFire;
 
@@ -27,6 +30,18 @@ public class PlayerControler : MonoBehaviour
 
 	private void Update()
 	{
+        if (!doingDash)
+        {
+            var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
+            rigidbody2D.velocity = translation;
+
+    }
+        if (Input.GetKeyDown(KeyCode.Space))//InputController.GetDashButtonDown())
+        {
+            doingDash = true;
+        }
+            rigidbody2D.velocity = rigidbody2D.velocity* 5f;
+            dashTimer = 0f;
 		var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
 		rigidbody2D.velocity = translation;
        
