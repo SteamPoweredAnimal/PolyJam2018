@@ -13,7 +13,7 @@ public class Missile : MonoBehaviour
     float timer = 0f;
     [HideInInspector]
     public BoxCollider2D collider;
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
     public Sprite falseSprite;
     public Sprite trueSprite;
 
@@ -87,13 +87,11 @@ public class Missile : MonoBehaviour
 
         missile1.type = newType;
         missile1.velocity = newVelocity;
-        //missile1.collider.enabled = false;
         missile1.timer = 0f;
         missile1.spriteRenderer.sprite = newSprite;
 
         missile2.type = newType;
         missile2.velocity = -newVelocity;
-        //missile2.collider.enabled = false;
         missile2.timer = 0f;
         missile2.spriteRenderer.sprite = newSprite;
 

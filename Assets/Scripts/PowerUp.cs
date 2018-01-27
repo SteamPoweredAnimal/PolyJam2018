@@ -8,8 +8,11 @@ public class PowerUp : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collider)
     {
         PlayerControler player = collider.gameObject.GetComponent<PlayerControler>();
-        Activate(player);
-        Destroy(gameObject);
+        if (player != null)
+        {
+            Activate(player);
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void Activate(PlayerControler player)
