@@ -11,7 +11,13 @@ public class HealthBar : MonoBehaviour
     public Transform Parent;
     public Scoreboard Scoreboard;
     public Vector3 SpawnPoint;
-    
+
+    public AudioClip HurtSound;
+    public AudioClip DeathSound;
+    private AudioSource ASource;
+
+
+
     private GameObject[] currentHPBar;
     private bool[] isActive;
     
@@ -20,8 +26,10 @@ public class HealthBar : MonoBehaviour
     public void Start()
     {
         currentHPBar = new GameObject[] { };
-
+       
         SetUpHpBar();
+
+        ASource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(char fromWhat, string missile)
@@ -36,9 +44,14 @@ public class HealthBar : MonoBehaviour
         {
             currentHPBar[i].SetActive(false);
             isActive[i] = false;
+
+            ASource.clip = HurtSound;
+            ASource.Play();
+
             if (i >= isActive.Length - 1)
             {
                 Die();
+                
                 Score(missile);
             }
         }
@@ -95,6 +108,8 @@ public class HealthBar : MonoBehaviour
 
     private void Die()
     {
+        ASource.clip = DeathSound;
+        ASource.Play();
         Parent.position = WPizduDaleko;
         Parent.gameObject.SetActive(false);
         SetUpHpBar();
