@@ -4,7 +4,7 @@ Za³o¿enia gry
 	- gracze zamiast HP maj¹ ci¹g 4 bitów (zer i jedynek) (nazwijmy to kodem)
 	- je¿eli gracz zostanie trafiony pociskiem o takiej samej wartoœci logicznej jak pierwszy bit w jego kodzie, to "traci" ten bit. Po straceniu wszystkich bitów przegrywa.
 	- je¿eli gracz zostanie trafiony pociskiem o innej wartoœci logicznej ni¿ pierwszy bit w jego kodzie, to kod siê resetuje (gracz odzyskuje pe³ne HP)
-	- pociski wchodz¹ ze sob¹ w interakcje, np. realizuj¹ logiczn¹bramkê XOR (jak zde¿¹ siê dwa takie same, wychodzi jedynka, a jak ró¿ne - zero).
+	- pociski wchodz¹ ze sob¹ w interakcje, np. realizuj¹ logiczn¹ bramkê XOR (jak zde¿¹ siê dwa takie same, wychodzi jedynka, a jak ró¿ne - zero).
  
 
 
