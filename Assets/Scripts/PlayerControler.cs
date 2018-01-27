@@ -84,9 +84,31 @@ public class PlayerControler : MonoBehaviour
         return gun_direction / gun_direction.magnitude;
     }
 
+
     public void PlayBuffSound()
     {
         GetComponent<AudioSource>().clip = PowerUpSound;
+        GetComponent<AudioSource>().Play();
+
+    }
+
+    public void PlayBitUp()
+    {
+        GetComponent<AudioSource>().clip = HealthDownSound;
+        GetComponent<AudioSource>().Play();
+
+    }
+
+    public void PlayBitDown()
+    {
+        GetComponent<AudioSource>().clip = HealthUpSound;
+        GetComponent<AudioSource>().Play();
+
+    }
+
+    public void PlayDeathSound()
+    {
+        GetComponent<AudioSource>().clip = DeathSound;
         GetComponent<AudioSource>().Play();
 
     }
