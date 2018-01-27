@@ -7,6 +7,10 @@ public class PlayerControler : MonoBehaviour
     public Gun gun;
 	public HealthBar HealthBar;
 	public int Score;
+    public AudioClip PowerUpSound;
+    public AudioClip HealthDownSound;
+    public AudioClip HealthUpSound;
+    public AudioClip DeathSound;
 
 
     private new Rigidbody2D rigidbody2D;
@@ -26,19 +30,12 @@ public class PlayerControler : MonoBehaviour
 		
 		if (InputController.Get0ShootButtonDown())
 		{
-			if (gun.normalGun) gun.Fire(gun.missileA, GetGunDirection());
+			if (gun.normalGun) gun.Fire(gun.missileA[0], GetGunDirection());
+            if (gun.shotGun) gun.ShotgunFire(gun.missileA[0], GetGunDirection());
 		} else if (InputController.Get1ShootButtonDown()) //avoid shooting two different missiles at once
 		{
-            if (gun.normalGun) gun.Fire(gun.missileB, GetGunDirection());
-		}
-
-        if (InputController.Get0ShootButton())
-        {
-            if (gun.shotGun) gun.ShotgunFire(gun.missileA, GetGunDirection());
-        }                        
-        else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
-        {                        
-            if (gun.shotGun) gun.ShotgunFire(gun.missileB, GetGunDirection());
+            if (gun.normalGun) gun.Fire(gun.missileB[0], GetGunDirection());
+            if (gun.shotGun) gun.ShotgunFire(gun.missileB[0], GetGunDirection());
         }
     }
 
@@ -46,5 +43,12 @@ public class PlayerControler : MonoBehaviour
     {
         Vector2 gun_direction = gun.transform.position - transform.position;
         return gun_direction / gun_direction.magnitude;
+    }
+
+    public void PlayBuffSound()
+    {
+        GetComponent<AudioSource>().clip = PowerUpSound;
+        GetComponent<AudioSource>().Play();
+
     }
 }

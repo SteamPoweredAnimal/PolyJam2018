@@ -188,6 +188,11 @@ Prefab:
       propertyPath: m_TagString
       value: MirrorVertical
       objectReference: {fileID: 0}
+    - target: {fileID: 61121916623888734, guid: b7ff61d72afc6459ebd466605d5284ea,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b7ff61d72afc6459ebd466605d5284ea, type: 2}
   m_IsPrefabParent: 0
@@ -354,7 +359,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 740588815}
-  scoreboard: {fileID: 1608581250}
+  Scoreboard: {fileID: 1608581250}
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1001 &140040342
 Prefab:
@@ -1648,7 +1653,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 2052919152}
-  scoreboard: {fileID: 1608581250}
+  Scoreboard: {fileID: 1608581250}
   SpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!114 &729298440
 MonoBehaviour:
@@ -2263,8 +2268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6a0ea4ff8b69c4c96fd37b12052be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missileA: {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
-  missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
+  missileA:
+  - {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
+  - {fileID: 114341390400607496, guid: ccda5f6ad850949d8844e535defd36d0, type: 2}
+  missileB:
+  - {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
+  - {fileID: 114712621447331750, guid: 3da9cf6ff3ce34a51bfd09c9b4be9c3f, type: 2}
   missileSpeed: 15
   normalGun: 1
   shotGun: 0
@@ -2621,8 +2630,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6a0ea4ff8b69c4c96fd37b12052be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  missileA: {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
-  missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
+  missileA:
+  - {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
+  - {fileID: 114341390400607496, guid: ccda5f6ad850949d8844e535defd36d0, type: 2}
+  missileB:
+  - {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
+  - {fileID: 114712621447331750, guid: 3da9cf6ff3ce34a51bfd09c9b4be9c3f, type: 2}
   missileSpeed: 15
   normalGun: 1
   shotGun: 0

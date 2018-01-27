@@ -3,57 +3,65 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
-using System.Collections.Generic;
 
 public class HealthBar : MonoBehaviour
 {
     public GameObject Zero, One;
-    public List<char> CurrentHP = new List<char>();
+    public string CurrentHP;
     public Transform Parent;
-    public Scoreboard scoreboard;
+    public Scoreboard Scoreboard;
     public Vector3 SpawnPoint;
-    
-    private List<GameObject> currentHPBar;
+
+    public AudioClip HurtSound;
+    public AudioClip DeathSound;
+    private AudioSource ASource;
+
+
+
+    private GameObject[] currentHPBar;
+    private bool[] isActive;
     
     private Vector3 WPizduDaleko = new Vector3(-10000, -10000, -10000);
 
     public void Start()
     {
-        currentHPBar = new List<GameObject>();
-
+        currentHPBar = new GameObject[] { };
+       
         SetUpHpBar();
+
+        ASource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(char fromWhat, string missile)
     {
-        if (fromWhat == CurrentHP.First())
+        var i = 0;
+        while (!isActive[i] && i < isActive.Length)
         {
-            CurrentHP.Remove(CurrentHP.First());
-            GameObject healthObject = currentHPBar.First();
-            currentHPBar.Remove(currentHPBar.First());
-            Destroy(healthObject);
-        } else
-        {
-            CurrentHP.Insert(0, fromWhat);
-            if (fromWhat == '0')
-            {
-                GameObject healthObject = Instantiate(Zero, transform);
-                healthObject.transform.SetAsFirstSibling();
-                currentHPBar.Insert(0, healthObject);
-            }
-            else
-            {
-                GameObject healthObject = Instantiate(One, transform);
-                healthObject.transform.SetAsFirstSibling();
-                currentHPBar.Insert(0, healthObject);
-            }
+            i++;
         }
 
-        if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8)
+        if (fromWhat == CurrentHP[i])
         {
-            if (missile == Parent.name) scoreboard.RemovePoint(missile);
-            else scoreboard.AddPoint(missile);
-            Die();
+            currentHPBar[i].SetActive(false);
+            isActive[i] = false;
+
+            ASource.clip = HurtSound;
+            ASource.Play();
+
+            if (i >= isActive.Length - 1)
+            {
+                Die();
+                
+                Score(missile);
+            }
+        }
+        else
+        {
+            for (var j = 0; j < i; j++)
+            {
+                currentHPBar[j].SetActive(true);
+                isActive[j] = true;
+            }
         }
     }
 
@@ -61,33 +69,34 @@ public class HealthBar : MonoBehaviour
     {
         if (Parent.name == missile)
         {
-            scoreboard.RemovePoint(missile);
+            Scoreboard.RemovePoint(missile);
         }
         else
         {
-            scoreboard.AddPoint(missile);
+            Scoreboard.AddPoint(missile);
         }
     }
     
     private static string GenerateNewHP()
     {
-        return Convert.ToString(Random.Range(0, 16), 2).PadLeft(4, '0');
+        return Convert.ToString(Random.Range(1, 31), 2).PadLeft(5, '0');
     }
 
     private void SetUpHpBar()
     {
-        CurrentHP = GenerateNewHP().ToCharArray().ToList<char>();
+        CurrentHP = GenerateNewHP();
         
         foreach (var o in currentHPBar)
         {
             Destroy(o);
         }
 
-        currentHPBar = new List<GameObject>();
+        currentHPBar = new GameObject[CurrentHP.Length];
+        isActive = Enumerable.Repeat(true, CurrentHP.Length).ToArray();
 
-        for (var i = 0; i < CurrentHP.Count; i++)
+        for (var i = 0; i < CurrentHP.Length; i++)
         {
-            currentHPBar.Add(Instantiate(CurrentHP[i] == '0' ? Zero : One, transform));
+            currentHPBar[i] = Instantiate(CurrentHP[i] == '0' ? Zero : One, transform);
         }
     }
 
@@ -99,6 +108,8 @@ public class HealthBar : MonoBehaviour
 
     private void Die()
     {
+        ASource.clip = DeathSound;
+        ASource.Play();
         Parent.position = WPizduDaleko;
         Parent.gameObject.SetActive(false);
         SetUpHpBar();
