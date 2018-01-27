@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     public AudioClip HealthDownSound;
     public AudioClip HealthUpSound;
     public AudioClip DeathSound;
+    bool doingDash = false;
 
 
     private new Rigidbody2D rigidbody2D;
@@ -22,8 +23,12 @@ public class PlayerControler : MonoBehaviour
 
 	private void Update()
 	{
-		var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
-		rigidbody2D.velocity = translation;
+        if (!doingDash)
+        {
+            var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
+            rigidbody2D.velocity = translation;
+        }
+
        
 		var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
 		transform.rotation = Quaternion.Euler(look);
