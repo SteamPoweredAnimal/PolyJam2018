@@ -21,9 +21,9 @@ GameObject:
   - component: {fileID: 4477917570622136}
   - component: {fileID: 212724940555651832}
   - component: {fileID: 61939025663380312}
-  - component: {fileID: 114643321901185798}
+  - component: {fileID: 114837606861534480}
   m_Layer: 0
-  m_Name: MachineGunPowerup
+  m_Name: MachineGunPowerUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114643321901185798
+--- !u!114 &114837606861534480
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,11 +75,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1646079543603934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19a6228d8ac6fde42bd22cfd55c09e82, type: 3}
+  m_Script: {fileID: 11500000, guid: a5ed1b6753b86924e813f4e49160341b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldPrefab: {fileID: 1684883578632674, guid: 2d337d6812a88dd40afd8c66c29faadf,
-    type: 2}
 --- !u!212 &212724940555651832
 SpriteRenderer:
   m_ObjectHideFlags: 1

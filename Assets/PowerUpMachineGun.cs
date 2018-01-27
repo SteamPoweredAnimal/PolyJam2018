@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PowerUpMachineGun : PowerUp {
 
+    float lifespan = 10f;
+
     protected override void Activate(PlayerControler player)
     {
         base.Activate(player);
-        player.useGun = false;
+        player.gun.PowerUp(lifespan, Gun.GunType.Machine);
     }
 
 }
