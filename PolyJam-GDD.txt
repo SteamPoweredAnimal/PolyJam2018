@@ -11,3 +11,4 @@ Za³o¿enia gry
 Pomys³y na dodatkowe opcje
 	- POWER UP: strzelanie q-bitami : s¹ zarówno zerem i jedynk¹, czyli zawsze zabieraj¹ HP
 	- POWER UP: firewall - stajemy siê niewra¿liwi na pociski
+	- mo¿na zniszczyæ przeciwnika nie tylko zabieraj¹c mu ca³e HP, ale tak¿e przepe³niaj¹c mu HP (jeœli trafimy z³ym pociskiem, dodaje mu siê HP. Powy¿ej maksymalnej wartoœci przegrywa, bo zrobiliœmy mu stack overflow albo coœ takiego)

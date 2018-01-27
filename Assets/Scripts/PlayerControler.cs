@@ -4,6 +4,7 @@ public class PlayerControler : MonoBehaviour
 {
 	public InputController InputController;
 	public float Speed;
+    public Gun gun;
 
 	private Rigidbody2D rigidbody2D;
 
@@ -19,5 +20,13 @@ public class PlayerControler : MonoBehaviour
 		
 		var look = new Vector2(InputController.GetXLookAxis(), InputController.GetYLookAxis());
 		transform.rotation = Quaternion.Euler(look);
+
+        if (InputController.Get0ShootButton())
+        {
+            gun.Fire(gun.missileA);
+        } else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
+        {
+            gun.Fire(gun.missileB);
+        }
 	}
 }
