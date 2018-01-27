@@ -34,11 +34,11 @@ public class PlayerControler : MonoBehaviour
 
         if (InputController.Get0ShootButton())
         {
-            if (gun.machineGun) gun.Fire(gun.missileA, GetGunDirection());
-        }
+            if (gun.shotGun) gun.ShotgunFire(gun.missileA, GetGunDirection());
+        }                        
         else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
-        {
-            if (gun.machineGun) gun.Fire(gun.missileB, GetGunDirection());
+        {                        
+            if (gun.shotGun) gun.ShotgunFire(gun.missileB, GetGunDirection());
         }
     }
 

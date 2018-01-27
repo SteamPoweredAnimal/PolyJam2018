@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     int bullets = 6;
 
     public bool normalGun = true;
-    public bool machineGun = false;
+    public bool shotGun = false;
 
     public enum GunType
     {
@@ -42,12 +42,31 @@ public class Gun : MonoBehaviour
             bullets--;
             if (bullets <= 0)
             {
-                canShoot = false;
-                bullets = 6;
-                cooldownTimer = 0f;
+                Reload();
             }
         }
+    }
 
+    public void ShotgunFire(Missile missile, Vector2 direction)
+    {
+        if (canShoot)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Missile _missile = Instantiate(missile);
+                _missile.justSpawned = true;
+                _missile.OwnerName = Owner.name;
+                float angle = -15f + 6f * i;
+                Vector2 newDirection = new Vector2(-Mathf.Sin(angle), -Mathf.Cos(angle));
+                _missile.transform.position = transform.position;
+                _missile.velocity = newDirection * missileSpeed;
+                bullets--;
+                if (bullets <= 0)
+                {
+                    Reload();
+                }
+            }
+        }
     }
 
     public void PowerUp(float lifespan, GunType type)
@@ -57,7 +76,7 @@ public class Gun : MonoBehaviour
         switch (type)
         {
             case GunType.Machine:
-                machineGun = true;
+                shotGun = true;
                 break;
             default:
                 normalGun = true;
@@ -72,7 +91,7 @@ public class Gun : MonoBehaviour
             if (timer >= powerupLifespan)
             {
                 normalGun = true;
-                machineGun = false;
+                shotGun = false;
                 timer = 0f;
             }
             timer += Time.deltaTime;
@@ -80,6 +99,13 @@ public class Gun : MonoBehaviour
 
         canShoot = cooldownTimer >= cooldown;
         cooldownTimer += Time.deltaTime;
+    }
+
+    void Reload()
+    {
+        canShoot = false;
+        bullets = 6;
+        cooldownTimer = 0f;
     }
 
 }

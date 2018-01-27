@@ -2246,7 +2246,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1551191873}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -1.04, z: 0}
+  m_LocalPosition: {x: -0.02, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2052919152}
@@ -2267,7 +2267,7 @@ MonoBehaviour:
   missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
   missileSpeed: 15
   normalGun: 1
-  machineGun: 0
+  shotGun: 0
 --- !u!1 &1608581245
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2604,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1877262436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: -1.04, z: 0}
+  m_LocalPosition: {x: -0.02, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 740588815}
@@ -2625,7 +2625,7 @@ MonoBehaviour:
   missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
   missileSpeed: 15
   normalGun: 1
-  machineGun: 0
+  shotGun: 0
 --- !u!1 &1886471700
 GameObject:
   m_ObjectHideFlags: 0

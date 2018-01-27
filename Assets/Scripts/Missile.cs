@@ -17,6 +17,7 @@ public class Missile : MonoBehaviour
     public Sprite falseSprite;
     public Sprite trueSprite;
     public Spark sparkPrefab;
+    public bool justSpawned = false;
 
     public enum MissileType
     {
@@ -38,7 +39,7 @@ public class Missile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer >= activationTime) collider.enabled = true;
+        if (timer >= activationTime) justSpawned = false;
         else timer += Time.deltaTime;
 
         transform.position += Time.deltaTime * new Vector3(velocity.x, velocity.y, 0f);
@@ -46,15 +47,20 @@ public class Missile : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        
         var collider = col.collider;
-        if (sparkPrefab != null)
+        Missile colliderMissile = collider.GetComponent<Missile>();
+
+        if (justSpawned && colliderMissile != null) return;
+
+            if (sparkPrefab != null)
         {
             Spark spark = Instantiate(sparkPrefab);
             spark.transform.position = transform.position;
             spark.transform.Translate(new Vector3(velocity.x / velocity.magnitude * spriteRenderer.bounds.size.x / 2, velocity.y / velocity.magnitude * spriteRenderer.bounds.size.y / 2, -0.01f));
         }
 
-        Missile colliderMissile = collider.GetComponent<Missile>();
+        
         var collidedPlayer = collider.GetComponent<PlayerControler>();
 
         if (collider.CompareTag("MirrorVertical"))
