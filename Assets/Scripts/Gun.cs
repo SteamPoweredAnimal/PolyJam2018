@@ -11,6 +11,10 @@ public class Gun : MonoBehaviour
     private GameObject Owner;
     float timer = 0f;
     float powerupLifespan = 0f;
+    float cooldown = 1f;
+    float cooldownTimer;
+    bool canShoot = true;
+    int bullets = 6;
 
     public bool normalGun = true;
     public bool machineGun = false;
@@ -24,14 +28,26 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         Owner = transform.parent.gameObject;
+        cooldownTimer = cooldown;
     }
 
     public void Fire(Missile missile, Vector2 direction)
     {
-        Missile _missile = Instantiate(missile);
-        _missile.OwnerName = Owner.name;
-        _missile.transform.position = transform.position;
-        _missile.velocity = direction * missileSpeed;
+        if (canShoot)
+        {
+            Missile _missile = Instantiate(missile);
+            _missile.OwnerName = Owner.name;
+            _missile.transform.position = transform.position;
+            _missile.velocity = direction * missileSpeed;
+            bullets--;
+            if (bullets <= 0)
+            {
+                canShoot = false;
+                bullets = 6;
+                cooldownTimer = 0f;
+            }
+        }
+
     }
 
     public void PowerUp(float lifespan, GunType type)
@@ -61,6 +77,9 @@ public class Gun : MonoBehaviour
             }
             timer += Time.deltaTime;
         }
+
+        canShoot = cooldownTimer >= cooldown;
+        cooldownTimer += Time.deltaTime;
     }
 
 }
