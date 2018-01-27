@@ -5,6 +5,7 @@ public class PlayerControler : MonoBehaviour
 	public InputController InputController;
 	public float Speed;
     public Gun gun;
+	public HealthBar healthBar;
 
 	private Rigidbody2D rigidbody2D;
 
