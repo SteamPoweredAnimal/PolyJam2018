@@ -53,7 +53,11 @@ public class Missile : MonoBehaviour
             if (velocity == -colliderMissile.velocity) return;
             ManageCollision(this, colliderMissile);
         }
-        else if(collidedPlayer != null) collidedPlayer.HealthBar.TakeDamage(type.ToChar());
+        else if (collidedPlayer != null)
+        {
+            Destroy(gameObject);
+            collidedPlayer.HealthBar.TakeDamage(type.ToChar());
+        }
         else Destroy(gameObject);
     }
 
