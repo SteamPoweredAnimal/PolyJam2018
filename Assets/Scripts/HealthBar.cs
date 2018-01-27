@@ -3,53 +3,53 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using System.Collections.Generic;
 
 public class HealthBar : MonoBehaviour
 {
     public GameObject Zero, One;
-    public string CurrentHP;
+    public List<char> CurrentHP = new List<char>();
     public Transform Parent;
     public Scoreboard Scoreboard;
     public Vector3 SpawnPoint;
     
-    private GameObject[] currentHPBar;
-    private bool[] isActive;
+    private List<GameObject> currentHPBar;
     
     private Vector3 WPizduDaleko = new Vector3(-10000, -10000, -10000);
 
     public void Start()
     {
-        currentHPBar = new GameObject[] { };
+        currentHPBar = new List<GameObject>();
 
         SetUpHpBar();
     }
 
     public void TakeDamage(char fromWhat, string missile)
     {
-        var i = 0;
-        while (!isActive[i] && i < isActive.Length)
+        if (fromWhat == CurrentHP.First())
         {
-            i++;
+            CurrentHP.Remove(CurrentHP.First());
+            GameObject healthObject = currentHPBar.First();
+            currentHPBar.Remove(currentHPBar.First());
+            Destroy(healthObject);
+        } else
+        {
+            CurrentHP.Insert(0, fromWhat);
+            if (fromWhat == '0')
+            {
+                GameObject healthObject = Instantiate(Zero, transform);
+                healthObject.transform.SetAsFirstSibling();
+                currentHPBar.Insert(0, healthObject);
+            }
+            else
+            {
+                GameObject healthObject = Instantiate(One, transform);
+                healthObject.transform.SetAsFirstSibling();
+                currentHPBar.Insert(0, healthObject);
+            }
         }
 
-        if (fromWhat == CurrentHP[i])
-        {
-            currentHPBar[i].SetActive(false);
-            isActive[i] = false;
-            if (i >= isActive.Length - 1)
-            {
-                Die();
-                Score(missile);
-            }
-        }
-        else
-        {
-            for (var j = 0; j < i; j++)
-            {
-                currentHPBar[j].SetActive(true);
-                isActive[j] = true;
-            }
-        }
+        if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8) Die();
     }
 
     private void Score(string missile)
@@ -66,24 +66,23 @@ public class HealthBar : MonoBehaviour
     
     private static string GenerateNewHP()
     {
-        return Convert.ToString(Random.Range(1, 31), 2).PadLeft(5, '0');
+        return Convert.ToString(Random.Range(0, 16), 2).PadLeft(4, '0');
     }
 
     private void SetUpHpBar()
     {
-        CurrentHP = GenerateNewHP();
+        CurrentHP = GenerateNewHP().ToCharArray().ToList<char>();
         
         foreach (var o in currentHPBar)
         {
             Destroy(o);
         }
 
-        currentHPBar = new GameObject[CurrentHP.Length];
-        isActive = Enumerable.Repeat(true, CurrentHP.Length).ToArray();
+        currentHPBar = new List<GameObject>();
 
-        for (var i = 0; i < CurrentHP.Length; i++)
+        for (var i = 0; i < CurrentHP.Count; i++)
         {
-            currentHPBar[i] = Instantiate(CurrentHP[i] == '0' ? Zero : One, transform);
+            currentHPBar.Add(Instantiate(CurrentHP[i] == '0' ? Zero : One, transform));
         }
     }
 
