@@ -28,7 +28,7 @@ public class Missile : MonoBehaviour
     public string OwnerName { get; set; }
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
@@ -36,7 +36,7 @@ public class Missile : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (timer >= activationTime) collider.enabled = true;
         else timer += Time.deltaTime;
@@ -44,7 +44,7 @@ public class Missile : MonoBehaviour
         transform.position += Time.deltaTime * new Vector3(velocity.x, velocity.y, 0f);
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    protected virtual void OnCollisionEnter2D(Collision2D col)
     {
         var collider = col.collider;
         if (sparkPrefab != null)
@@ -81,7 +81,7 @@ public class Missile : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    void ManageCollision(Missile missile1, Missile missile2)
+    protected virtual void ManageCollision(Missile missile1, Missile missile2)
     {
         bool sameType = missile1.type == missile2.type;
 
