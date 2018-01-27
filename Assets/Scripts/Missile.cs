@@ -9,13 +9,14 @@ public class Missile : MonoBehaviour
 
     public Vector2 velocity;
     public MissileType type;
-    float activationTime = .25f;
+    float activationTime = .5f;
     float timer = 0f;
     [HideInInspector]
     public BoxCollider2D collider;
     public SpriteRenderer spriteRenderer;
     public Sprite falseSprite;
     public Sprite trueSprite;
+    public Spark sparkPrefab;
 
     public enum MissileType
     {
@@ -46,6 +47,12 @@ public class Missile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         var collider = col.collider;
+        if (sparkPrefab != null)
+        {
+            Spark spark = Instantiate(sparkPrefab);
+            spark.transform.position = transform.position;
+            spark.transform.Translate(new Vector3(velocity.x / velocity.magnitude * spriteRenderer.bounds.size.x / 2, velocity.y / velocity.magnitude * spriteRenderer.bounds.size.y / 2, -0.01f));
+        }
 
         Missile colliderMissile = collider.GetComponent<Missile>();
         var collidedPlayer = collider.GetComponent<PlayerControler>();
