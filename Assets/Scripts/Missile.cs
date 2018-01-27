@@ -24,6 +24,8 @@ public class Missile : MonoBehaviour
         Qbit = 2
     }
 
+    public string OwnerName { get; set; }
+
     // Use this for initialization
     void Start()
     {
@@ -56,7 +58,7 @@ public class Missile : MonoBehaviour
         else if (collidedPlayer != null)
         {
             Destroy(gameObject);
-            collidedPlayer.HealthBar.TakeDamage(type.ToChar());
+            collidedPlayer.HealthBar.TakeDamage(type.ToChar(), OwnerName);
         }
         else Destroy(gameObject);
     }
