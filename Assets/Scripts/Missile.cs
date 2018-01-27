@@ -15,4 +15,10 @@ public class Missile : MonoBehaviour {
 	void Update () {
         transform.position += Time.deltaTime * new Vector3(velocity.x, velocity.y, 0f);
 	}
+
+    void OnCollisionEnter2D (Collision2D col)
+    {
+        Debug.Log("Collision detected");
+        Destroy(gameObject);
+    }
 }
