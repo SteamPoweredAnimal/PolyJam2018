@@ -7,6 +7,7 @@ public class PlayerControler : MonoBehaviour
     public Gun gun;
 	public HealthBar HealthBar;
 	public int Score;
+    public bool useGun = true;
 	
 	private new Rigidbody2D rigidbody2D;
 
@@ -25,11 +26,13 @@ public class PlayerControler : MonoBehaviour
 		
 		if (InputController.Get0ShootButton())
 		{
-			gun.Fire(gun.missileA, GetGunDirection());
+			if (useGun) gun.Fire(gun.missileA, GetGunDirection());
 		} else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
 		{
-			gun.Fire(gun.missileB, GetGunDirection());
+            if (useGun) gun.Fire(gun.missileB, GetGunDirection());
 		}
+
+
 	}
 
     private Vector2 GetGunDirection()
