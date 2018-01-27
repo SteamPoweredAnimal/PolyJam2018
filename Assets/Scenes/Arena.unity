@@ -1225,3 +1225,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missileA: {fileID: 114994390114912516, guid: 960fb101409c374468a4604eb8bdd0d7, type: 2}
   missileB: {fileID: 114766679127972930, guid: c34a6a2c19b9e9e4ebb8fbf867fa3b0e, type: 2}
+  missileSpeed: 10

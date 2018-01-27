@@ -23,10 +23,10 @@ public class PlayerControler : MonoBehaviour
 
         if (InputController.Get0ShootButton())
         {
-            gun.Fire(gun.missileA);
+            gun.Fire(gun.missileA, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
         } else if (InputController.Get1ShootButton()) //avoid shooting two different missiles at once
         {
-            gun.Fire(gun.missileB);
+            gun.Fire(gun.missileB, Vector2.right); //TODO : replace Vector2.right with look vector when rotating works
         }
 	}
 }
