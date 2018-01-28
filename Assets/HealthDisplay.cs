@@ -17,7 +17,7 @@ public class HealthDisplay : MonoBehaviour {
         Debug.Log("health chars count - 1 = " + (healthChars.Count - 1));
         for (int i = 7; i >= 0 ; i--)
         {
-            Debug.Log(" i = " + i);
+           // Debug.Log(" i = " + i);
             int j = 7 - i;
             if (i < healthChars.Count)
             {

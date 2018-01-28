@@ -15,11 +15,11 @@ public class Gun : MonoBehaviour
     float cooldown = 1f;
     float cooldownTimer;
     bool canShoot = true;
-    int bullets = 6;
+    public int bullets = 6;
+    public AmmoDisplay ammoDisplay;
 
     public Image weaponImage;
     public Sprite[] weaponSprites;
-    public Text ammoLabel;
    
     public bool normalGun = true;
     public bool shotGun = false;
@@ -41,6 +41,7 @@ public class Gun : MonoBehaviour
         Audio = GetComponent<AudioSource>();
         Owner = transform.parent.gameObject;
         cooldownTimer = cooldown;
+        ammoDisplay.Refresh(this);
     }
 
     public void Fire(Missile missile, Vector2 direction)
@@ -53,7 +54,7 @@ public class Gun : MonoBehaviour
             _missile.transform.position = transform.position;
             _missile.velocity = direction * missileSpeed;
             bullets--;
-            ammoLabel.text = bullets.ToString();
+            ammoDisplay.Refresh(this);
             if (bullets <= 0)
             {
                 Reload();
@@ -71,12 +72,14 @@ public class Gun : MonoBehaviour
                 _missile.justSpawned = true;
                 _missile.OwnerName = Owner.name;
                 float angle = -15f + 6f * i;
-                Vector2 newDirection = new Vector2(-Mathf.Sin(angle), -Mathf.Cos(angle));
+                Vector2 newDirection = new Vector2(-Mathf.Sin(angle), Mathf.Cos(angle));
                 _missile.transform.position = transform.position;
                 _missile.velocity = newDirection * missileSpeed;
                 bullets--;
+                ammoDisplay.Refresh(this);
                 if (bullets <= 0)
                 {
+                    
                     Reload();
                 }
             }
@@ -93,12 +96,15 @@ public class Gun : MonoBehaviour
         {
             case GunType.Machine:
                 shotGun = true;
+                weaponImage.sprite = weaponSprites[1];
                 break;
             case GunType.Grenade:
                 grenadeGun = true;
+                weaponImage.sprite = weaponSprites[2];
                 break;
             default:
                 normalGun = true;
+                weaponImage.sprite = weaponSprites[0];
                 break;
         }
     }
@@ -112,11 +118,12 @@ public class Gun : MonoBehaviour
                 normalGun = true;
                 shotGun = false;
                 timer = 0f;
+                weaponImage.sprite = weaponSprites[0];
             }
             timer += Time.deltaTime;
         }
 
-        if (canShoot && bullets.ToString() != ammoLabel.text) ammoLabel.text = bullets.ToString();
+        if (canShoot && bullets != ammoDisplay.activeBullets) ammoDisplay.Refresh(this) ;
         canShoot = cooldownTimer >= cooldown;
         cooldownTimer += Time.deltaTime;
     }
@@ -126,8 +133,7 @@ public class Gun : MonoBehaviour
         Audio.Play(); //Play Reload sound
         canShoot = false;
         bullets = 6;
-        cooldownTimer = 0f;
-        
+        cooldownTimer = 0f;        
     }
 
 }

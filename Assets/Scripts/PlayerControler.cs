@@ -33,8 +33,8 @@ public class PlayerControler : MonoBehaviour
 
 	private void Update()
 	{
-        if (gameObject.name == "player_1")
-            Debug.Log(InputController.GetShootButton());
+       // if (gameObject.name == "player_1")
+       //     Debug.Log(InputController.GetShootButton());
         if (!doingDash)
         {
             var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;

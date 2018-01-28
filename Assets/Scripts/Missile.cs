@@ -16,6 +16,8 @@ public class Missile : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public Sprite falseSprite;
     public Sprite trueSprite;
+    public Material falseMaterial;
+    public Material trueMaterial;
     public Spark sparkPrefab;
     public bool justSpawned = false;
 
@@ -107,6 +109,20 @@ public class Missile : MonoBehaviour
                 break;
             default:
                 newSprite = spriteRenderer.sprite;
+                break;
+        }
+
+        Material newMaterial;
+        switch (newType)
+        {
+            case MissileType.False:
+                newMaterial = falseMaterial;
+                break;
+            case MissileType.True:
+                newMaterial = trueMaterial;
+                break;
+            default:
+                newMaterial = spriteRenderer.material;
                 break;
         }
 

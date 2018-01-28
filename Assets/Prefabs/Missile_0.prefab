@@ -201,8 +201,11 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   falseSprite: {fileID: 21300000, guid: 7c5aa3773113e6646a2ff906e550ffcd, type: 3}
   trueSprite: {fileID: 21300000, guid: 3d3a8be1c1fa5684882c58bc1fda5f82, type: 3}
+  falseMaterial: {fileID: 2100000, guid: 81f6adc84db830c4d9d6ac227f0ae2c6, type: 2}
+  trueMaterial: {fileID: 2100000, guid: 41e9b59365d82934ba83a7e4f9123109, type: 2}
   sparkPrefab: {fileID: 114366685170108054, guid: bbd879930bda75e4582009fce8191d13,
     type: 2}
+  justSpawned: 0
 --- !u!212 &212948702131582564
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -218,7 +221,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 81f6adc84db830c4d9d6ac227f0ae2c6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
