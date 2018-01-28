@@ -8,6 +8,7 @@ public class Scoreboard : MonoBehaviour
     private int points;
 
     public GameObject Credits;
+    public ButtonController bc;
     
     public const int WinCondition = 5;
     
@@ -41,5 +42,8 @@ public class Scoreboard : MonoBehaviour
     public void Win()
     {
         Credits.SetActive(true);
+        bc.direction = -1;
+        bc.fade = true;
+        bc.gameObject.SetActive(true);
     }
 }

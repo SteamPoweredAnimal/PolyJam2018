@@ -28,7 +28,7 @@ public class ButtonController : MonoBehaviour
 			if (timer >= totalTime)
 			{
 				if(direction == 1) SceneManager.LoadScene("FinalArena");
-				else Destroy(gameObject);
+				else gameObject.SetActive(false);
 			}
 		}
 	}
