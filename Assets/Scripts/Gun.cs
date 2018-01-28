@@ -18,6 +18,7 @@ public class Gun : MonoBehaviour
 
     public bool normalGun = true;
     public bool shotGun = false;
+    public bool grenadeGun = false;
 
     public enum GunType
     {
@@ -73,11 +74,16 @@ public class Gun : MonoBehaviour
     public void PowerUp(float lifespan, GunType type)
     {
         normalGun = false;
+        shotGun = false;
+        grenadeGun = false;
         powerupLifespan = lifespan;
         switch (type)
         {
             case GunType.Machine:
                 shotGun = true;
+                break;
+            case GunType.Grenade:
+                grenadeGun = true;
                 break;
             default:
                 normalGun = true;

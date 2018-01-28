@@ -71,12 +71,24 @@ public class PlayerControler : MonoBehaviour
             allowFire = false;
             if (gun.normalGun) gun.Fire(gun.missileA[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileA[0], GetGunDirection());
+            if (gun.grenadeGun)
+            {
+                gun.grenadeGun = false;
+                gun.normalGun = true;
+                gun.Fire(gun.missileA[1], GetGunDirection());
+            }
         }
         else if (allowFire && InputController.GetShootButton() < -0.2)
         {
             allowFire = false;
             if (gun.normalGun) gun.Fire(gun.missileB[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileB[0], GetGunDirection());
+            if (gun.grenadeGun)
+            {
+                gun.grenadeGun = false;
+                gun.normalGun = true;
+                gun.Fire(gun.missileB[1], GetGunDirection());
+            }
         }
         else if (Mathf.Abs(InputController.GetShootButton()) < 0.2)
             allowFire = true;
@@ -87,6 +99,7 @@ public class PlayerControler : MonoBehaviour
         Vector2 gun_direction = gun.transform.position - transform.position;
         return gun_direction / gun_direction.magnitude;
     }
+
 
     public void PlayBuffSound()
     {
@@ -102,5 +115,27 @@ public class PlayerControler : MonoBehaviour
         shadowGO.transform.rotation = transform.rotation;
 
         yield return new WaitForSeconds(0.02f);
+
+    }
+
+    public void PlayBitUp()
+    {
+        GetComponent<AudioSource>().clip = HealthDownSound;
+        GetComponent<AudioSource>().Play();
+
+    }
+
+    public void PlayBitDown()
+    {
+        GetComponent<AudioSource>().clip = HealthUpSound;
+        GetComponent<AudioSource>().Play();
+
+    }
+
+    public void PlayDeathSound()
+    {
+        GetComponent<AudioSource>().clip = DeathSound;
+        GetComponent<AudioSource>().Play();
+        
     }
 }

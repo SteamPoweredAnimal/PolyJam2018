@@ -12,9 +12,10 @@ public class HealthBar : MonoBehaviour
     public Transform Parent;
     public Scoreboard Scoreboard;
     public Vector3 SpawnPoint;
-   // public AudioClip HurtSound;
-   // public AudioClip DeathSound;
-   // private AudioSource ASource;
+    // public AudioClip HurtSound;
+    // public AudioClip DeathSound;
+    // private AudioSource ASource;
+   // private PlayerControler Player;
 
 
 
@@ -40,12 +41,14 @@ public class HealthBar : MonoBehaviour
             GameObject healthObject = currentHPBar.First();
             currentHPBar.Remove(currentHPBar.First());
             Destroy(healthObject);
+            Parent.GetComponent<PlayerControler>().PlayBitDown();
         } else
         {
             CurrentHP.Insert(0, fromWhat);
             GameObject healthObject = Instantiate(fromWhat == '0'? Zero : One, transform);
             currentHPBar.Insert(0, healthObject);
             healthObject.transform.SetAsFirstSibling();
+            Parent.GetComponent<PlayerControler>().PlayBitUp();
         }
 
         if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8)
@@ -101,7 +104,7 @@ public class HealthBar : MonoBehaviour
     {
         //ASource.clip = DeathSound;
         //ASource.Play();
-        //Parent.
+        Parent.GetComponent<PlayerControler>().PlayDeathSound();
         Parent.position = WPizduDaleko;
         Parent.gameObject.SetActive(false);
         SetUpHpBar();
