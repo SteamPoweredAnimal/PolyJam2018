@@ -9,6 +9,7 @@ public class ButtonController : MonoBehaviour
 	private float timer = 0.0f;
 	public bool fade = false;
 	public RawImage image;
+	public int direction = 1;
 	
 	private void Update()
 	{
@@ -21,11 +22,13 @@ public class ButtonController : MonoBehaviour
 			
 			timer += Time.deltaTime;
 			
-			image.material.SetFloat("_Cutoff", timer / totalTime);
+			if(direction == 1) image.material.SetFloat("_Cutoff", timer / totalTime);
+			else image.material.SetFloat("_Cutoff", 1.0f - timer / totalTime);
 			
 			if (timer >= totalTime)
 			{
-				SceneManager.LoadScene("FinalArena");
+				if(direction == 1) SceneManager.LoadScene("FinalArena");
+				else Destroy(gameObject);
 			}
 		}
 	}
