@@ -12,14 +12,13 @@ public class Scoreboard : MonoBehaviour
         scores = new Dictionary<string, Text>();
         points = new Dictionary<string, int>();
         
-        foreach (Transform child in transform)
-        {
-            var name = child.GetChild(0).GetComponent<Text>().text;
-            var text = child.GetChild(1).GetComponent<Text>();
+
+            var name = transform.GetChild(0).GetChild(0).GetComponent<Text>().text;
+            var text = transform.GetChild(0).GetChild(1).GetComponent<Text>();
             
             scores.Add(name, text);
             points.Add(name, 0);
-        }
+        
     }
 
     public void RemovePoint(string missile)
