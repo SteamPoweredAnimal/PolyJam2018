@@ -8154,7 +8154,10 @@ MonoBehaviour:
   bullets: 6
   ammoDisplay: {fileID: 1599153404}
   weaponImage: {fileID: 124433760}
-  weaponSprites: []
+  weaponSprites:
+  - {fileID: 21300000, guid: 56a876c75a0e6421a819fc216d488c8f, type: 3}
+  - {fileID: 21300000, guid: 8303a54e265ed444dac8961cae8a7212, type: 3}
+  - {fileID: 21300000, guid: df956a86719934cf0b645c02c006ee2b, type: 3}
   normalGun: 1
   shotGun: 0
   grenadeGun: 0
@@ -10004,6 +10007,7 @@ MonoBehaviour:
   weaponSprites:
   - {fileID: 21300000, guid: 56a876c75a0e6421a819fc216d488c8f, type: 3}
   - {fileID: 21300000, guid: 8303a54e265ed444dac8961cae8a7212, type: 3}
+  - {fileID: 21300000, guid: df956a86719934cf0b645c02c006ee2b, type: 3}
   normalGun: 1
   shotGun: 0
   grenadeGun: 0

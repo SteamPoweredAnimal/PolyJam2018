@@ -96,12 +96,15 @@ public class Gun : MonoBehaviour
         {
             case GunType.Machine:
                 shotGun = true;
+                weaponImage.sprite = weaponSprites[1];
                 break;
             case GunType.Grenade:
                 grenadeGun = true;
+                weaponImage.sprite = weaponSprites[2];
                 break;
             default:
                 normalGun = true;
+                weaponImage.sprite = weaponSprites[0];
                 break;
         }
     }
@@ -115,6 +118,7 @@ public class Gun : MonoBehaviour
                 normalGun = true;
                 shotGun = false;
                 timer = 0f;
+                weaponImage.sprite = weaponSprites[0];
             }
             timer += Time.deltaTime;
         }
