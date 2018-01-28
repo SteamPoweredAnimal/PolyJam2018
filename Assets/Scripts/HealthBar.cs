@@ -15,7 +15,8 @@ public class HealthBar : MonoBehaviour
     // public AudioClip HurtSound;
     // public AudioClip DeathSound;
     // private AudioSource ASource;
-   // private PlayerControler Player;
+    // private PlayerControler Player;
+    public HealthDisplay healthDisplay;
 
 
 
@@ -50,6 +51,8 @@ public class HealthBar : MonoBehaviour
             healthObject.transform.SetAsFirstSibling();
             Parent.GetComponent<PlayerControler>().PlayBitUp();
         }
+
+        healthDisplay.Refresh(this);
 
         if (CurrentHP.Count <= 0 || CurrentHP.Count >= 8)
         {
@@ -92,6 +95,8 @@ public class HealthBar : MonoBehaviour
         {
             currentHPBar.Add(Instantiate(CurrentHP[i] == '0' ? Zero : One, transform));
         }
+
+        healthDisplay.Refresh(this);
     }
 
     private void Update()
