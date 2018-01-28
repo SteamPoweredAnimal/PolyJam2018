@@ -18,7 +18,7 @@ public class PlayerControler : MonoBehaviour
     public Vector3 previousLook;
     public bool allowFire;
 
-    public DashShadow shadow;
+    public GameObject shadow;
 
     private new Rigidbody2D rigidbody2D;
 
@@ -53,7 +53,6 @@ public class PlayerControler : MonoBehaviour
             //if (dashTimer >= 0.5f)
             //{
             doingDash = false;
-            StopCoroutine("SpawnShadow");
             //}
         }
 
@@ -110,12 +109,24 @@ public class PlayerControler : MonoBehaviour
 
     IEnumerator SpawnShadow()
     {
-        DashShadow shadowGO = Instantiate(shadow, transform);
-        shadowGO.transform.position = transform.position;
-        shadowGO.transform.rotation = transform.rotation;
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            if (shadow != null)
+            {
+                GameObject shadowGO = Instantiate(shadow);
+                shadowGO.GetComponent<DashShadow>().sprite = GetComponent<SpriteRenderer>().sprite;
+                shadowGO.transform.position = transform.position;
+                shadowGO.transform.rotation = transform.rotation;
+            }
+            else
+            {
+                Debug.Log("Shadow is null");
+            }
 
-        yield return new WaitForSeconds(0.02f);
-
+            Debug.Log("In couroutine");
+            
+        }
     }
 
     public void PlayBitUp()
