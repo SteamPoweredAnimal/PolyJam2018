@@ -34,6 +34,7 @@ public class Missile : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<BoxCollider2D>();
         //collider.enabled = false;
+        GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);//Change pitch of fire sound
     }
 
     // Update is called once per frame
