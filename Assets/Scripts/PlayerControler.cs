@@ -31,6 +31,8 @@ public class PlayerControler : MonoBehaviour
 
 	private void Update()
 	{
+        if (gameObject.name == "player_1")
+            Debug.Log(InputController.GetShootButton());
         if (!doingDash)
         {
             var translation = new Vector2(InputController.GetXMoveAxis(), InputController.GetYMoveAxis()) * Speed;
@@ -55,7 +57,7 @@ public class PlayerControler : MonoBehaviour
 
 
         var look = new Vector3(0, 0, Mathf.Atan2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()) * Mathf.Rad2Deg);
-        Debug.Log(look.magnitude);
+        // Debug.Log(look.magnitude);
         if (new Vector2(InputController.GetXLookAxis(), -InputController.GetYLookAxis()).magnitude > 0.8)
         {
             previousLook = look;
