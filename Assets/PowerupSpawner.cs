@@ -31,5 +31,11 @@ public class PowerupSpawner : MonoBehaviour {
         }
 
     }
+
+    public void SpawnShield (Vector3 position)
+    {
+        GameObject powerupGO = Instantiate(powerups[0]);
+        powerupGO.transform.position = position + new Vector3 (0f, 0f, -0.01f);
+    }
 	
 }
