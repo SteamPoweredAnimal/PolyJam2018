@@ -114,5 +114,7 @@ public class HealthBar : MonoBehaviour
         Parent.position = SpawnPoint;
         Parent.gameObject.SetActive(true);
         SetUpHpBar();
+        PowerupSpawner powsSpaw = FindObjectOfType<PowerupSpawner>();
+        if (powsSpaw != null) powsSpaw.SpawnShield(SpawnPoint);
     }
 }
