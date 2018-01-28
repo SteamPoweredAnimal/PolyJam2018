@@ -16,25 +16,26 @@ public class LogicGate : MonoBehaviour
             
             Missile.MissileType newType = missile.type == Missile.MissileType.False ? Missile.MissileType.True : Missile.MissileType.False;
 
+            Material newMaterial;
             Sprite newSprite;
             switch (newType)
             {
                 case Missile.MissileType.False:
-                    newSprite = missile.falseSprite;
+                    newMaterial = missile.falseMaterial;
                     GetComponent<AudioSource>().clip = ChangeSound1;
 
                     break;
                 case Missile.MissileType.True:
-                    newSprite = missile.trueSprite;
+                    newMaterial = missile.trueMaterial;
                     GetComponent<AudioSource>().clip = ChangeSound2;
                     break;
                 default:
-                    newSprite = missile.spriteRenderer.sprite;
+                    newMaterial = missile.spriteRenderer.material;
                     break;
             }
             GetComponent<AudioSource>().Play();
             missile.type = newType;
-            missile.spriteRenderer.sprite = newSprite;
+            missile.spriteRenderer.material = newMaterial;
         }
     }
 }

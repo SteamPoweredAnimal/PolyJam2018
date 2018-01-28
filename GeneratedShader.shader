@@ -67,6 +67,10 @@ Shader "PBR Master"
 							{
 							    Out = cos(In);
 							}
+							void Unity_Clamp_float(float In, float Min, float Max, out float Out)
+							{
+							    Out = clamp(In, Min, Max);
+							}
 							void Unity_Lerp_float(float4 A, float4 B, float4 T, out float4 Out)
 							{
 							    Out = lerp(A, B, T);
@@ -95,6 +99,7 @@ Shader "PBR Master"
 							UNITY_DECLARE_TEX2D(_SampleTexture2D_522A15F1_Tex);
 							float4 _SampleTexture2D_522A15F1_UV;
 							float4 Color_66A2BAED;
+							float4 _Multiply_EF228037_B;
 							float4 Color_E0DB4C3B;
 							float _Multiply_FD05A340_B;
 							float _Add_767D71F7_B;
@@ -103,6 +108,8 @@ Shader "PBR Master"
 							float _Add_C485FED0_B;
 							float _Multiply_465726C7_B;
 							float _Multiply_6924DB3A_B;
+							float _Clamp_D94F8869_Min;
+							float _Clamp_D94F8869_Max;
 							float4 _Multiply_14091557_B;
 							float4 _PBRMaster_595E6C50_Normal;
 							float _PBRMaster_595E6C50_Metallic;
@@ -119,10 +126,12 @@ Shader "PBR Master"
 								float _SampleTexture2D_522A15F1_G = _SampleTexture2D_522A15F1_RGBA.g;
 								float _SampleTexture2D_522A15F1_B = _SampleTexture2D_522A15F1_RGBA.b;
 								float _SampleTexture2D_522A15F1_A = _SampleTexture2D_522A15F1_RGBA.a;
+								float4 _Multiply_EF228037_Out;
+								Unity_Multiply_float(Color_66A2BAED, _Multiply_EF228037_B, _Multiply_EF228037_Out);
 								float4 _Multiply_EA310F84_Out;
-								Unity_Multiply_float((_SampleTexture2D_522A15F1_G.xxxx), Color_66A2BAED, _Multiply_EA310F84_Out);
+								Unity_Multiply_float((_SampleTexture2D_522A15F1_B.xxxx), _Multiply_EF228037_Out, _Multiply_EA310F84_Out);
 								float4 _Multiply_3DD5A703_Out;
-								Unity_Multiply_float((_SampleTexture2D_522A15F1_B.xxxx), Color_E0DB4C3B, _Multiply_3DD5A703_Out);
+								Unity_Multiply_float((_SampleTexture2D_522A15F1_R.xxxx), Color_E0DB4C3B, _Multiply_3DD5A703_Out);
 								float _Multiply_FD05A340_Out;
 								Unity_Multiply_float(_Time.y, _Multiply_FD05A340_B, _Multiply_FD05A340_Out);
 								float _Sine_8DFBD739_Out;
@@ -143,8 +152,10 @@ Shader "PBR Master"
 								Unity_Multiply_float(_Cosine_BA0CA376_Out, _Multiply_6924DB3A_B, _Multiply_6924DB3A_Out);
 								float _Add_F3B41850_Out;
 								Unity_Add_float(_Add_C485FED0_Out, _Multiply_6924DB3A_Out, _Add_F3B41850_Out);
+								float _Clamp_D94F8869_Out;
+								Unity_Clamp_float(_Add_F3B41850_Out, _Clamp_D94F8869_Min, _Clamp_D94F8869_Max, _Clamp_D94F8869_Out);
 								float4 _Lerp_B49E4547_Out;
-								Unity_Lerp_float(_Multiply_EA310F84_Out, _Multiply_3DD5A703_Out, (_Add_F3B41850_Out.xxxx), _Lerp_B49E4547_Out);
+								Unity_Lerp_float(_Multiply_EA310F84_Out, _Multiply_3DD5A703_Out, (_Clamp_D94F8869_Out.xxxx), _Lerp_B49E4547_Out);
 								float4 _Multiply_E10EC811_Out;
 								Unity_Multiply_float(_Lerp_B49E4547_Out, (_SampleTexture2D_522A15F1_A.xxxx), _Multiply_E10EC811_Out);
 								float4 _Multiply_14091557_Out;
@@ -155,7 +166,7 @@ Shader "PBR Master"
 								surface.Metallic = _PBRMaster_595E6C50_Metallic;
 								surface.Smoothness = _PBRMaster_595E6C50_Smoothness;
 								surface.Occlusion = _PBRMaster_595E6C50_Occlusion;
-								surface.Alpha = _SampleTexture2D_522A15F1_A;
+								surface.Alpha = _SampleTexture2D_522A15F1_R;
 								return surface;
 							}
 			
