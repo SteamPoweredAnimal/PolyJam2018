@@ -16,8 +16,13 @@ public class Gun : MonoBehaviour
     bool canShoot = true;
     int bullets = 6;
 
+   
     public bool normalGun = true;
     public bool shotGun = false;
+
+
+    private AudioSource Audio;
+    public AudioClip SoundReloadSound;
 
     public enum GunType
     {
@@ -28,6 +33,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        Audio = GetComponent<AudioSource>();
         Owner = transform.parent.gameObject;
         cooldownTimer = cooldown;
     }
@@ -37,6 +43,7 @@ public class Gun : MonoBehaviour
         if (canShoot)
         {
             Missile _missile = Instantiate(missile);
+         
             _missile.OwnerName = Owner.name;
             _missile.transform.position = transform.position;
             _missile.velocity = direction * missileSpeed;
@@ -104,9 +111,11 @@ public class Gun : MonoBehaviour
 
     void Reload()
     {
+        Audio.Play(); //Play Reload sound
         canShoot = false;
         bullets = 6;
         cooldownTimer = 0f;
+
     }
 
 }
