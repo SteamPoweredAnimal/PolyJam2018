@@ -72,9 +72,9 @@ public class Gun : MonoBehaviour
                 _missile.justSpawned = true;
                 _missile.OwnerName = Owner.name;
                 float angle = -15f + 6f * i;
-                Vector2 newDirection = new Vector2(-Mathf.Sin(angle), Mathf.Cos(angle));
+                Vector2 newDirection = Quaternion.Euler(0, 0, angle) * direction;
                 _missile.transform.position = transform.position;
-                _missile.velocity = newDirection * missileSpeed;
+                _missile.velocity = (direction + newDirection) * missileSpeed;
                 bullets--;
                 ammoDisplay.Refresh(this);
                 if (bullets <= 0)
