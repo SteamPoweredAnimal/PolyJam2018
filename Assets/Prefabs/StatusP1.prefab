@@ -544,9 +544,9 @@ MonoBehaviour:
   - {fileID: 114313898293867360}
   - {fileID: 114208809236528840}
   - {fileID: 114443041291070854}
-  zeroSprite: {fileID: 21300000, guid: 70a9a1c7d6bea6642ab9b0c16c37f4d0, type: 3}
-  oneSprite: {fileID: 21300000, guid: 370c0fef75d4bf64aa50938632b2dfdc, type: 3}
-  emptySprite: {fileID: 21300000, guid: 619e50a7a9b19474b8d3e9a0f88e9607, type: 3}
+  zeroSprite: {fileID: 21300000, guid: 564e02e74de279e4b8b7ecaeb5fc5f8e, type: 3}
+  oneSprite: {fileID: 21300000, guid: 0c70007aba6bc5a429b968b2d2bad228, type: 3}
+  emptySprite: {fileID: 21300000, guid: 7bfdebab2f2acf647b0bff383076f563, type: 3}
 --- !u!114 &114190831943702032
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -855,6 +855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b717134abc63484d9c8866367a57cd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Credits: {fileID: 0}
 --- !u!114 &114572947851795052
 MonoBehaviour:
   m_ObjectHideFlags: 1
