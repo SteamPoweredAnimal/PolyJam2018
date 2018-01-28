@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class PlayerControler : MonoBehaviour
 {
-	public InputController InputController;
-	public float Speed;
+    public InputController InputController;
+    public float Speed;
     public Gun gun;
-	public HealthBar HealthBar;
-	public int Score;
+    public HealthBar HealthBar;
+    public int Score;
     public AudioClip PowerUpSound;
     public AudioClip HealthDownSound;
     public AudioClip HealthUpSound;
@@ -17,12 +18,13 @@ public class PlayerControler : MonoBehaviour
     public Vector3 previousLook;
     public bool allowFire;
 
+    public GameObject shadow;
 
     private new Rigidbody2D rigidbody2D;
 
-	private void Start()
-	{
-		rigidbody2D = GetComponent<Rigidbody2D>();
+    private void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
         previousLook = new Vector3(0, 0, 0);
         allowFire = true;
         dashTimer = dashCooldown;
@@ -44,14 +46,15 @@ public class PlayerControler : MonoBehaviour
             doingDash = true;
             rigidbody2D.velocity = rigidbody2D.velocity * 10f;
             dashTimer = 0f;
+            StartCoroutine("SpawnShadow");
         }
         dashTimer += Time.deltaTime;
-        if(doingDash && dashTimer >= 0.1f)
+        if (doingDash && dashTimer >= 0.1f)
         {
             rigidbody2D.velocity = Vector3.zero;
             //if (dashTimer >= 0.5f)
             //{
-                doingDash = false;
+            doingDash = false;
             //}
         }
 
@@ -106,6 +109,28 @@ public class PlayerControler : MonoBehaviour
 
     }
 
+    IEnumerator SpawnShadow()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            yield return new WaitForSeconds(0.01f);
+            if (shadow != null)
+            {
+                GameObject shadowGO = Instantiate(shadow);
+                shadowGO.GetComponent<DashShadow>().sprite = GetComponent<SpriteRenderer>().sprite;
+                shadowGO.transform.position = transform.position;
+                shadowGO.transform.rotation = transform.rotation;
+            }
+            else
+            {
+                Debug.Log("Shadow is null");
+            }
+
+            Debug.Log("In couroutine");
+            
+        }
+    }
+
     public void PlayBitUp()
     {
         GetComponent<AudioSource>().clip = HealthDownSound;
@@ -124,6 +149,6 @@ public class PlayerControler : MonoBehaviour
     {
         GetComponent<AudioSource>().clip = DeathSound;
         GetComponent<AudioSource>().Play();
-
+        
     }
 }
