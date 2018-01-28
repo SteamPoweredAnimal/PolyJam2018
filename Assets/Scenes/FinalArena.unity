@@ -901,7 +901,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 740588815}
-  Scoreboard: {fileID: 667702337}
+  opponentScoreboard: {fileID: 1608581250}
   SpawnPoint: {x: 0, y: 0, z: 0}
   healthDisplay: {fileID: 2139208028}
 --- !u!1 &120236029
@@ -5176,7 +5176,7 @@ MonoBehaviour:
   One: {fileID: 1497843502234840, guid: 0fe21417b2fd540a7baeba8d8822b12d, type: 2}
   CurrentHP: 
   Parent: {fileID: 2052919152}
-  Scoreboard: {fileID: 1608581250}
+  opponentScoreboard: {fileID: 667702337}
   SpawnPoint: {x: 0, y: 0, z: 0}
   healthDisplay: {fileID: 157489918}
 --- !u!114 &729298440
