@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class Gun : MonoBehaviour
     bool canShoot = true;
     int bullets = 6;
 
+    public Image weaponImage;
+    public Sprite[] weaponSprites;
+    public Text ammoLabel;
    
     public bool normalGun = true;
     public bool shotGun = false;
@@ -49,6 +53,7 @@ public class Gun : MonoBehaviour
             _missile.transform.position = transform.position;
             _missile.velocity = direction * missileSpeed;
             bullets--;
+            ammoLabel.text = bullets.ToString();
             if (bullets <= 0)
             {
                 Reload();
@@ -111,6 +116,7 @@ public class Gun : MonoBehaviour
             timer += Time.deltaTime;
         }
 
+        if (canShoot && bullets.ToString() != ammoLabel.text) ammoLabel.text = bullets.ToString();
         canShoot = cooldownTimer >= cooldown;
         cooldownTimer += Time.deltaTime;
     }
@@ -121,7 +127,7 @@ public class Gun : MonoBehaviour
         canShoot = false;
         bullets = 6;
         cooldownTimer = 0f;
-
+        
     }
 
 }
