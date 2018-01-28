@@ -28,7 +28,7 @@ public class HealthBar : MonoBehaviour
     public void Start()
     {
         currentHPBar = new List<GameObject>();
-       
+        SpawnPoint = Parent.transform.position;
         SetUpHpBar();
 
         //ASource = GetComponent<AudioSource>();
