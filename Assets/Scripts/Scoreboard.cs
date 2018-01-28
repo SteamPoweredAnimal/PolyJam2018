@@ -6,6 +6,10 @@ public class Scoreboard : MonoBehaviour
 {
     private Text scores;
     private int points;
+
+    public GameObject Credits;
+    
+    public const int WinCondition = 5;
     
     private void Start()
     {      
@@ -25,6 +29,15 @@ public class Scoreboard : MonoBehaviour
 
     public void AddPoint()
     {
+        if (points >= WinCondition)
+        {
+            Win();
+        }
         scores.text = (++points).ToString();
+    }
+
+    public void Win()
+    {
+        Credits.SetActive(true);
     }
 }
