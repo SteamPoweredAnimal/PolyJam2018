@@ -15,7 +15,7 @@ public class PowerUpShield : PowerUp
             
 
             GameObject shieldGO = Instantiate(shieldPrefab, player.transform);
-            shieldGO.transform.localPosition = new Vector3(0, 0, 0.01f);
+            shieldGO.transform.localPosition = new Vector3(0, 0, -0.01f);
         }
     }
 

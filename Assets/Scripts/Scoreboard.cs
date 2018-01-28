@@ -29,11 +29,13 @@ public class Scoreboard : MonoBehaviour
 
     public void AddPoint()
     {
+        scores.text = "Score: " + (++points).ToString();
+
         if (points >= WinCondition)
         {
             Win();
         }
-        scores.text = (++points).ToString();
+
     }
 
     public void Win()
