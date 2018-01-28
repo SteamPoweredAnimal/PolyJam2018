@@ -67,12 +67,24 @@ public class PlayerControler : MonoBehaviour
             allowFire = false;
             if (gun.normalGun) gun.Fire(gun.missileA[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileA[0], GetGunDirection());
+            if (gun.grenadeGun)
+            {
+                gun.grenadeGun = false;
+                gun.normalGun = true;
+                gun.Fire(gun.missileA[1], GetGunDirection());
+            }
         }
         else if (allowFire && InputController.GetShootButton() < -0.2)
         {
             allowFire = false;
             if (gun.normalGun) gun.Fire(gun.missileB[0], GetGunDirection());
             if (gun.shotGun) gun.ShotgunFire(gun.missileB[0], GetGunDirection());
+            if (gun.grenadeGun)
+            {
+                gun.grenadeGun = false;
+                gun.normalGun = true;
+                gun.Fire(gun.missileB[1], GetGunDirection());
+            }
         }
         else if (Mathf.Abs(InputController.GetShootButton()) < 0.2)
             allowFire = true;
