@@ -10,6 +10,7 @@ public class ButtonController : MonoBehaviour
 	public bool fade = false;
 	public RawImage image;
 	public int direction = 1;
+	public bool stay = false;
 	
 	private void Update()
 	{
@@ -27,8 +28,11 @@ public class ButtonController : MonoBehaviour
 			
 			if (timer >= totalTime)
 			{
-				if(direction == 1) SceneManager.LoadScene("FinalArena");
-				else gameObject.SetActive(false);
+				if (!stay)
+				{
+					if (direction == 1) SceneManager.LoadScene("FinalArena");
+					else gameObject.SetActive(false);
+				}
 			}
 		}
 	}
